@@ -39,17 +39,21 @@
                               </Group>
                               <EmptySpace min="-2" pref="113" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="label" min="-2" max="-2" attributes="0"/>
-                              <Component id="itemnamefield" min="-2" pref="324" max="-2" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="boxnum" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="soldbox" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="dateAddedf" min="-2" pref="103" max="-2" attributes="0"/>
+                          <Component id="textField1" alignment="0" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="label" min="-2" max="-2" attributes="0"/>
+                                  <Component id="itemnamefield" min="-2" pref="324" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="boxnum" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="soldbox" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="dateAddedf" min="-2" pref="103" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="typeBox" alignment="0" min="-2" pref="152" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="textField1" alignment="0" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -80,7 +84,9 @@
               <Component id="ConditionBox" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="textField1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="88" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="typeBox" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="58" max="32767" attributes="0"/>
               <Component id="addButton" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -140,6 +146,11 @@
     <Component class="java.awt.TextField" name="textField1">
       <Properties>
         <Property name="text" type="java.lang.String" value="Price"/>
+      </Properties>
+    </Component>
+    <Component class="java.awt.TextField" name="typeBox">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Hardback or paperback"/>
       </Properties>
     </Component>
   </SubComponents>
