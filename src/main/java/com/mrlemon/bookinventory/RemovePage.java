@@ -4,6 +4,11 @@
  */
 package com.mrlemon.bookinventory;
 
+// NOTE
+/* this script is currently not in use
+    but it will be in the future
+*/
+
 /**
  *
  * @author armyg
