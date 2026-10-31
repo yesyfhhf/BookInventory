@@ -1222,6 +1222,7 @@ public class BookInventory extends javax.swing.JFrame {
         new RemovePage().setVisible(true);
     }//GEN-LAST:event_button2ActionPerformed
 
+    
     /**
      * @param args the command line arguments
      */

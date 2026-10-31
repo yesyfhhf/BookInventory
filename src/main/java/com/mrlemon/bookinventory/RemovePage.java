@@ -8,9 +8,6 @@ package com.mrlemon.bookinventory;
 
 import static com.mrlemon.bookinventory.BookInventory.tabel1;
 
-/* this script is currently not in use
-    but it will be in the future
-*/
 
 /**
  *
