@@ -5,6 +5,9 @@
 package com.mrlemon.bookinventory;
 
 // NOTE
+
+import static com.mrlemon.bookinventory.BookInventory.tabel1;
+
 /* this script is currently not in use
     but it will be in the future
 */
@@ -14,6 +17,8 @@ package com.mrlemon.bookinventory;
  * @author armyg
  */
 public class RemovePage extends javax.swing.JFrame {
+    
+    public static String remTitle;
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(RemovePage.class.getName());
 
@@ -34,14 +39,17 @@ public class RemovePage extends javax.swing.JFrame {
     private void initComponents() {
 
         button1 = new java.awt.Button();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        titleField = new java.awt.TextField();
+        label1 = new java.awt.Label();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         button1.setLabel("Remove");
         button1.addActionListener(this::button1ActionPerformed);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        titleField.setText("Enter your book's name here");
+
+        label1.setText("Remove Book");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -50,16 +58,19 @@ public class RemovePage extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(318, Short.MAX_VALUE))
+                    .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(titleField, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 225, Short.MAX_VALUE)
+                .addGap(8, 8, 8)
+                .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(titleField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 212, Short.MAX_VALUE)
                 .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -68,7 +79,17 @@ public class RemovePage extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
-        // TODO add your handling code here:
+        remTitle = titleField.getText();
+        
+        for (int row = 0; row < tabel1.getRowCount(); row++) {
+            Object cell = tabel1.getValueAt(row, 0);
+            if (cell == null || cell.toString().trim().isEmpty()) {
+                continue;
+            }
+            else if (cell == remTitle) {
+                tabel1.clearSelection();
+            }
+        }
     }//GEN-LAST:event_button1ActionPerformed
 
     /**
@@ -98,6 +119,7 @@ public class RemovePage extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.Button button1;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private java.awt.Label label1;
+    private java.awt.TextField titleField;
     // End of variables declaration//GEN-END:variables
 }
