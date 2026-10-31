@@ -76,17 +76,21 @@ public class RemovePage extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
+
         remTitle = titleField.getText();
-        
+
         for (int row = 0; row < tabel1.getRowCount(); row++) {
             Object cell = tabel1.getValueAt(row, 0);
-            if (cell == null || cell.toString().trim().isEmpty()) {
-                continue;
-            }
-            else if (cell == remTitle) {
-                tabel1.clearSelection();
+        if (cell == null || cell.toString().trim().isEmpty()) {
+            continue;
+        }
+        if (cell.toString().trim().equalsIgnoreCase(remTitle.trim())) {
+            for (int col = 0; col < tabel1.getColumnCount(); col++) {
+                tabel1.setValueAt(null, row, col);
+                dispose();
             }
         }
+    }
     }//GEN-LAST:event_button1ActionPerformed
 
     /**
