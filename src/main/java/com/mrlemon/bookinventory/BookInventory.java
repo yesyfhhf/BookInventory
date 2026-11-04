@@ -29,6 +29,7 @@ public class BookInventory extends javax.swing.JFrame {
      */
     public BookInventory() {
     initComponents();
+    
 
     getContentPane().removeAll();
     getContentPane().setLayout(new java.awt.BorderLayout());
@@ -39,6 +40,7 @@ public class BookInventory extends javax.swing.JFrame {
     top.add(button2);
     top.add(button3);
     top.add(errorLabel);
+    top.add(valueLabel);
 
     getContentPane().add(top, java.awt.BorderLayout.NORTH);
     getContentPane().add(jScrollPane1, java.awt.BorderLayout.CENTER);
@@ -46,6 +48,7 @@ public class BookInventory extends javax.swing.JFrame {
 
     this.settingsFile = new File(System.getProperty("user.home"), "bookinventory-settings.txt");
     loadData();
+    calcTotValue();
 }
 
     
@@ -108,6 +111,7 @@ public class BookInventory extends javax.swing.JFrame {
         button3 = new java.awt.Button();
         errorLabel = new java.awt.Label();
         button2 = new java.awt.Button();
+        valueLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1920, 1080));
@@ -1155,12 +1159,15 @@ public class BookInventory extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 944, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(41, 41, 41)
                         .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(button2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(button3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(63, 63, 63)
+                        .addGap(32, 32, 32)
+                        .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(errorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(6, 6, 6))
@@ -1168,11 +1175,13 @@ public class BookInventory extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(button3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(errorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(button2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(button1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(button3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(button2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(errorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -1219,22 +1228,40 @@ public class BookInventory extends javax.swing.JFrame {
             errorLabel.setText("File Failed to Write");
         }
     }//GEN-LAST:event_button3ActionPerformed
-
+    
     private void button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button2ActionPerformed
         new RemovePage().setVisible(true);
     }//GEN-LAST:event_button2ActionPerformed
-
     
-    /**
-     * @param args the command line arguments
-     */
+    
+    @SuppressWarnings("unused")
+    private static void calcTotValue() {
+        double totprice = 0;
+        String charat;
+        for (int row = 0; row < tabel1.getRowCount(); row++) {
+            Object cell = tabel1.getValueAt(row, 6);
+            charat = (String) tabel1.getValueAt(row, (int) 6l);
+            if (cell != null) {
+               try {
+                totprice += Double.parseDouble((String) tabel1.getValueAt(row, 6));
+               }
+               catch (NumberFormatException e) {
+                   System.err.println(e);
+               }
+            }
+            if (-1 == charat.indexOf('$')) {
+                continue;
+            } else {
+                valueLabel.setText("Invalid price values, remove the '$' from your values and restart");
+                System.out.println("Please remove the '$'.");
+            }
+        }
+        valueLabel.setText(String.valueOf("$" + totprice));
+    }
+    
+
     public static void main(String args[]) {
-        System.out.println("test output");
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+        
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -1245,10 +1272,10 @@ public class BookInventory extends javax.swing.JFrame {
         } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
             logger.log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
 
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> new BookInventory().setVisible(true));
+        
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1259,5 +1286,6 @@ public class BookInventory extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private java.awt.List list;
     public static javax.swing.JTable tabel1;
+    private static javax.swing.JLabel valueLabel;
     // End of variables declaration//GEN-END:variables
 }

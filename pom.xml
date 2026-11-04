@@ -20,7 +20,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>${exec.mainClass}</mainClass>
+                            <mainClass>com.mrlemon.bookinventory.BookInventory</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
