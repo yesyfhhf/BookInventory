@@ -51,7 +51,7 @@ public class AddPage extends javax.swing.JFrame {
         textField1 = new java.awt.TextField();
         typeBox = new java.awt.TextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         label.setText("Add Item");
 

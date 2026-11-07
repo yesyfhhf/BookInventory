@@ -39,7 +39,7 @@ public class RemovePage extends javax.swing.JFrame {
         titleField = new java.awt.TextField();
         label1 = new java.awt.Label();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         button1.setLabel("Remove");
         button1.addActionListener(this::button1ActionPerformed);

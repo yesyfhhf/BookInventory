@@ -4,6 +4,7 @@
  */
 package com.mrlemon.bookinventory;
 
+import static com.mrlemon.bookinventory.AddPage.isSold;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -20,6 +21,8 @@ public class BookInventory extends javax.swing.JFrame {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(BookInventory.class.getName());
     public static ArrayList<String> lines = new ArrayList<>();
     public static ArrayList<String> parts = new ArrayList<>();
+    
+    public static boolean isSold2;
     
     
     private File settingsFile; 
@@ -1241,13 +1244,17 @@ public class BookInventory extends javax.swing.JFrame {
         for (int row = 0; row < tabel1.getRowCount(); row++) {
             Object cell = tabel1.getValueAt(row, 6);
             charat = (String) tabel1.getValueAt(row, (int) 6l);
-            if (cell != null) {
+            isSold2 = (boolean) tabel1.getValueAt(row, 2);
+            if (cell != null && isSold2 != true) {
                try {
-                totprice += Double.parseDouble((String) tabel1.getValueAt(row, 6));
+                   totprice += Double.parseDouble((String) tabel1.getValueAt(row, 6));
                }
                catch (NumberFormatException e) {
                    System.err.println(e);
                }
+            }
+            else if (cell != null && isSold2 == true) {
+                continue;
             }
             if (-1 == charat.indexOf('$')) {
                 continue;
